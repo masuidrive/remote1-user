@@ -1,16 +1,11 @@
-// https://github.com/hokaccha/react-micro-container
-// import React from 'react';
-// import { EventEmitter } from 'events';
-
 class MicroController extends React.Component {
-  /*
   constructor(props) {
     super(props);
 
     this.emitter = new EventEmitter();
     this.dispatch = this.dispatch.bind(this);
   }
-*/
+
   componentWillUnmount() {
     this.unsubscribe();
   }

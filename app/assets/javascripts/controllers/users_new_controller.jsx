@@ -1,4 +1,4 @@
-class UsersNewController extends MicroController {
+class UsersNewController extends React.Component/* window.MicroController*/ {
   render() {
     return (
       <div>
