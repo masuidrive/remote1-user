@@ -2,7 +2,7 @@ FROM ruby:2.3
 ENV LANG C.UTF-8
 
 RUN apt-get update && \
-    apt-get install -y nodejs npm mysql-client --no-install-recommends && \
+    apt-get install -y mysql-client --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/src/app
 

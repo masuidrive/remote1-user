@@ -1,12 +1,27 @@
-class UsersNewController extends React.Component/* window.MicroController*/ {
+//= require ./micro_controller
+class UsersNewController extends MicroController {
+  constructor(props) {
+    super(props);
+    this.state = { username: '', password: '' };
+  }
+
+  componentDidMount() {
+    this.subscribeHandles();
+  }
+
+  handleUpdateUsername(text) {
+    this.setState({ username: text });
+  }
+
+  handleUpdatePassword(text) {
+    this.setState({ password: text });
+  }
+  
   render() {
     return (
       <div>
-        <SignupFormComponent/>
-      test1233
+        <SignupFormComponent dispatch={this.dispatch} {...this.state} />
       </div>
     )
   }
 }
-
-window.UsersNewController = UsersNewController

@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '~> 0.10.0'
 
 # client side
+gem 'therubyracer', '~> 0.12.2'
 gem 'react-rails', '~> 1.7'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3'
