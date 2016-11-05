@@ -5,10 +5,6 @@ class UsersNewController extends MicroController {
     this.state = { username: '', password: '' };
   }
 
-  componentDidMount() {
-    this.subscribeHandles();
-  }
-
   handleUpdateUsername(text) {
     this.setState({ username: text });
   }

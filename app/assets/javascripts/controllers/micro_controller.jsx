@@ -3,6 +3,7 @@ class MicroController extends React.Component {
     super(props);
     this.emitter = new EventEmitter();
     this.dispatch = this.dispatch.bind(this);
+    this.subscribeHandles();
   }
 
   componentWillUnmount() {
