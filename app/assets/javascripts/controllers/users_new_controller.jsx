@@ -35,13 +35,21 @@ class UsersNewController extends ActionController {
   }
 
   actionConfirm() {
-    this.setState({
-      usernameConfirmation: this.state.username,
-      passwordConfirmation: this.state.password,
-      username: '',
-      password: ''
-    });
-    // true 以外でも動くように。promiseも
+    var canMove =
+      !_.isEmpty(this.state.username) && this.state.validUsername &&
+      !_.isEmpty(this.state.password) && this.state.validPassword    
+    
+    if(canMove) {
+      this.setState({
+        usernameConfirmation: this.state.username,
+        passwordConfirmation: this.state.password,
+        username: '',
+        password: ''
+      });
+    }
+    else {
+      return false;
+    }
   }
   
   renderNew() {
@@ -76,7 +84,7 @@ class UsersNewController extends ActionController {
           :
           <button className="btn btn-primary disabled">Plase fill above form</button>
         }
-      </div>
+        </div>
     )
   }
 }

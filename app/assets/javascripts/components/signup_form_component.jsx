@@ -5,10 +5,11 @@ window.SignupFormComponent = (props) => (
         <label>User name</label>
         <input
           value={props.username}
-          type="email"
+          type="text"
           className="form-control" 
           onChange={(e) => props.dispatch('update_username', e.target.value)}
           placeholder="Account name (alphabets, numbers and ._-@)"
+          autoComplete="off"
           autoFocus
         />
         <span className="help-block">3 and more alphabets, numbers and ._-@</span>
@@ -21,6 +22,7 @@ window.SignupFormComponent = (props) => (
           className="form-control"
           onChange={(e) => props.dispatch('update_password', e.target.value)}
           placeholder="Password"
+          autoComplete="off"
         />
       </div>
   </div>

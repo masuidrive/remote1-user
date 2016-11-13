@@ -23,9 +23,14 @@ class ActionController extends MicroController {
 
   handleAction(action) {
     var actionFunc = this[_.camelCase(`action_${this.actionName(action)}`)]
-    console.log(action, actionFunc);
     if(typeof actionFunc == 'function') {
-      if(actionFunc.call(this)) {
+      var result = actionFunc.call(this);
+      if(result instanceof Promise) {
+        result.then(() =>
+          this.setState({ action: action })      
+        )
+      }
+      else if(result !== false) {
         this.setState({ action: action });
       }
     }
