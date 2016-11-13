@@ -1,9 +1,10 @@
+// http://qiita.com/hokaccha/items/76332e9863c067522835
+
 class MicroController extends React.Component {
   constructor(props) {
     super(props);
     this.emitter = new EventEmitter();
     this.dispatch = this.dispatch.bind(this);
-    this.subscribeHandles();
   }
 
   componentWillUnmount() {
@@ -19,18 +20,6 @@ class MicroController extends React.Component {
       let handler = events[name];
       this.emitter.on(name, handler.bind(this));
     });
-  }
-
-  subscribeHandles() {
-    let self = this;
-    Object.getOwnPropertyNames(this.__proto__).forEach(name => {
-      let result = name.match(/handle(\w+)/);
-      console.log(result);
-      if(result !== null) {
-        console.log(_.snakeCase(result[1]),self[name]);
-        self.emitter.on(_.snakeCase(result[1]), self[name].bind(self));
-      }
-    })
   }
 
   unsubscribe() {
