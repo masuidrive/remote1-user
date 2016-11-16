@@ -51,6 +51,22 @@ class UsersNewController extends ActionController {
       return false;
     }
   }
+
+  actionCreate() {
+    var user = new UserModel();
+    user.username = this.state.username;
+    user.password = this.state.password;
+    return new Promise((resolve, reject) => {
+      user.signup().then(() => {
+        console.log("resolve");
+        resolve();
+      })
+      .catch(() => {
+        console.log("reject");
+        reject();
+      })
+    })
+  }
   
   renderNew() {
     var canSubmit =
@@ -84,7 +100,15 @@ class UsersNewController extends ActionController {
           :
           <button className="btn btn-primary disabled">Plase fill above form</button>
         }
-        </div>
+      </div>
+    )
+  }
+
+  renderCreate() {
+    return (
+      <div>
+        Thank you for joining Resume-1.
+      </div>
     )
   }
 }

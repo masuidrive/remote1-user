@@ -84,3 +84,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+CLIENT_SALT = "56fdad58974f824ced97da21bec01d4910262e61701abd723edcec13c24114ae"

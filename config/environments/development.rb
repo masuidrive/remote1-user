@@ -53,3 +53,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.web_console.whitelisted_ips = %w( 0.0.0.0/0 ::/0 )
 end
+
+CLIENT_SALT = "bd9ba2ea523bf89f2dd2af217727a11d822c9e99c8a05c9f8714bcc14045e33c"

@@ -40,3 +40,5 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+CLIENT_SALT = "eb94997f54e58a4971c6ce7bb5e0f82e9bf5d3827158242bf2ec584bfcaa8282"
