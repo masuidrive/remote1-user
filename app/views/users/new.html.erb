@@ -1,1 +1,4 @@
 <%= react_component('UsersNewController') %>
+<%= debug session['_csrf_token'] %>
+<%= form_for User.new do %>
+<% end %>
