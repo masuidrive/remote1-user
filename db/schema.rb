@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20161116013147) do
     t.string   "username"
     t.string   "password_digest"
     t.string   "password_salt"
-    t.boolean  "active"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "active",          default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end

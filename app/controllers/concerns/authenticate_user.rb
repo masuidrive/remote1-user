@@ -15,6 +15,6 @@ module AuthenticateUser
   private
   def set_authorized_user(user)
     @current_user = user
-    session[:current_user_uid] = user ? user.uid : nil
+    session[:current_user_uid] = user.try(:uid)
   end
 end

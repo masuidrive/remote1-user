@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :username, unique: true
       t.string :password_digest
       t.string :password_salt
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps
     end

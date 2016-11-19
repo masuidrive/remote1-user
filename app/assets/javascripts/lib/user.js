@@ -35,16 +35,46 @@ class UserModel {
           "X-CSRF-Token": csrf_token
         })
       })
-        .then((response) => response.json())
-        .then((json) => {
-          // jsonにJSONオブジェクトで結果が渡される
-          console.log(json);
-          resolve(json);
-        })
-        .catch((err) => {
-          reject(err);
-        })
-    })
+      .then((response) => {
+        if(response.ok) {
+          resolve(response.json());
+        }
+        else {
+          reject(undefined);
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      })
+    });
   }  
 
+  signin() {
+    var data = new FormData();
+    data.append('user[username]', this.username_digest);
+    data.append('user[password]', this.password_digest);
+
+    var csrf_token = document.querySelector("meta[name='csrf-token']").attributes.getNamedItem("content").value;
+
+    return new Promise((resolve, reject) => {
+      fetch("/sessions.json", {
+        method: 'post',
+        body: data,
+        headers: new Headers({
+          "X-CSRF-Token": csrf_token
+        })
+      })
+      .then((response) => {
+        if(response.ok) {
+          resolve(response);
+        }
+        else {
+          reject(undefined);
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    })
+  }  
 }

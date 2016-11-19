@@ -1,4 +1,4 @@
-class UsersNewController extends ActionController {
+class SessionsNewController extends ActionController {
   constructor(props) {
     super(props);
     this.state = { username: '', password: '' };
@@ -30,26 +30,9 @@ class UsersNewController extends ActionController {
   actionNew() {
     this.setState({
       username: "",
-      password: ""
+      password: "",
+      nessage: undefined
     })
-  }
-
-  actionConfirm() {
-    var canMove =
-      !_.isEmpty(this.state.username) && this.state.validUsername &&
-      !_.isEmpty(this.state.password) && this.state.validPassword    
-    
-    if(canMove) {
-      this.setState({
-        usernameConfirmation: this.state.username,
-        passwordConfirmation: this.state.password,
-        username: '',
-        password: ''
-      });
-    }
-    else {
-      return false;
-    }
   }
 
   actionCreate() {
@@ -57,12 +40,14 @@ class UsersNewController extends ActionController {
     user.username = this.state.username;
     user.password = this.state.password;
     return new Promise((resolve, reject) => {
-      user.signup().then(() => {
+      user.signin().then(() => {
         console.log("resolve");
         resolve();
       })
       .catch(() => {
-        console.log("reject");
+        this.setState({
+          message: "Unmathch username or password."
+        });
         reject();
       })
     })
@@ -75,28 +60,12 @@ class UsersNewController extends ActionController {
 
     return (
       <div>
-        <UserFormComponent dispatch={this.dispatch} {...this.state} />
-        { canSubmit ?
-          <button className="btn btn-primary" onClick={() => this.dispatch('action', 'confirm') }>Confirm</button>
-          :
-          <button className="btn btn-primary disabled">Plase fill above form</button>
-        }
-      </div>
-    )
-  }
-
-  renderConfirm() {
-    var canSubmit =
-      this.state.username == this.state.usernameConfirmation &&
-      this.state.password == this.state.passwordConfirmation;
-    return (
-      <div>
         <div>
-          確認のため、もう一度同じユーザ名とパスワードを入力してください。
+          {this.state.message}
         </div>
         <UserFormComponent dispatch={this.dispatch} {...this.state} />
         { canSubmit ?
-          <button className="btn btn-primary" onClick={() => this.dispatch('action', 'create') }>Register</button>
+          <button className="btn btn-primary" onClick={() => this.dispatch('action', 'create') }>Confirm</button>
           :
           <button className="btn btn-primary disabled">Plase fill above form</button>
         }
@@ -107,7 +76,7 @@ class UsersNewController extends ActionController {
   renderCreate() {
     return (
       <div>
-        Thank you for joining Resume-1.
+        Thank you for signing in Resume-1.
       </div>
     )
   }

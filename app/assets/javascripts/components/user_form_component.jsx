@@ -1,5 +1,5 @@
 // export default () => (
-window.SignupFormComponent = (props) => (
+window.UserFormComponent = (props) => (
   <div>
       <div className={(_.isEmpty(props.username) || props.validUsername) ? "form-group" : "form-group has-error"}>
         <label>User name</label>
