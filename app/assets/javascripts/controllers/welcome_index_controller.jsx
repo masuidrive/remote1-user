@@ -8,11 +8,10 @@ class WelcomeIndexController extends ActionController {
   actionIndex() {
   }
 
-
   renderIndex() {
     return (
       <div>
-        Thank you for joining Resume-1.
+        Welcome to Resume-1.
       </div>
     )
   }
