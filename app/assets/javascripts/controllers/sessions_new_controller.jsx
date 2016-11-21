@@ -31,7 +31,7 @@ class SessionsNewController extends ActionController {
     this.setState({
       username: "",
       password: "",
-      nessage: undefined
+      message: undefined
     })
   }
 
@@ -74,10 +74,6 @@ class SessionsNewController extends ActionController {
   }
 
   renderCreate() {
-    return (
-      <div>
-        Thank you for signing in Resume-1.
-      </div>
-    )
+    location.href = "/welcome"
   }
 }

@@ -29,11 +29,13 @@ class UserModel {
 
     return new Promise((resolve, reject) => {
       fetch("/users.json", {
-        method: 'post',
+        method: "POST",
+        credentials: "same-origin",
         body: data,
-        headers: new Headers({
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
           "X-CSRF-Token": csrf_token
-        })
+        }
       })
       .then((response) => {
         if(response.ok) {
@@ -43,9 +45,7 @@ class UserModel {
           reject(undefined);
         }
       })
-      .catch((err) => {
-        reject(err);
-      })
+      .catch(reject)
     });
   }  
 
@@ -58,11 +58,13 @@ class UserModel {
 
     return new Promise((resolve, reject) => {
       fetch("/sessions.json", {
-        method: 'post',
+        method: "POST",
+        credentials: "same-origin",
         body: data,
-        headers: new Headers({
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
           "X-CSRF-Token": csrf_token
-        })
+        }
       })
       .then((response) => {
         if(response.ok) {
@@ -72,9 +74,7 @@ class UserModel {
           reject(undefined);
         }
       })
-      .catch((err) => {
-        reject(err);
-      });
+      .catch(reject)
     })
   }  
 }
