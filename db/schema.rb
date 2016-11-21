@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031022042) do
+ActiveRecord::Schema.define(version: 20161121151150) do
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "uid"
+    t.string   "label_en"
+    t.string   "label_ja"
+    t.boolean  "visible",     default: false
+    t.integer  "order_index", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "essays", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "uid"
+    t.text     "body",       limit: 65535
+    t.boolean  "selected"
+    t.integer  "topic_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["topic_id"], name: "index_essays_on_topic_id", using: :btree
+  end
+
+  create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "uid"
+    t.text     "body",        limit: 65535
+    t.boolean  "active"
+    t.integer  "category_id"
+    t.integer  "order_index",               default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["category_id"], name: "index_topics_on_category_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
@@ -22,4 +53,6 @@ ActiveRecord::Schema.define(version: 20161031022042) do
     t.datetime "updated_at",                     null: false
   end
 
+  add_foreign_key "essays", "topics"
+  add_foreign_key "topics", "categories"
 end
