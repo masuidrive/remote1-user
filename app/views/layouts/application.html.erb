@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="client-salt" content="<%= CLIENT_SALT %>" />
     <title>Resume 1</title>
+    <meta name="client-salt" content="<%= CLIENT_SALT %>" />
+    <%= yield :meta_json %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

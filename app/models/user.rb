@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true
   validates :password_digest, presence: true
   validates :password_salt, presence: true
+  has_many :essays, dependent: :destroy
+
 
   def password=(str)
     self.password_digest = digest(str)

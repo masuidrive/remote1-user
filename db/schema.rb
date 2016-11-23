@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121151150) do
+ActiveRecord::Schema.define(version: 20161121162458) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161121151150) do
     t.integer  "topic_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "user_id"
     t.index ["topic_id"], name: "index_essays_on_topic_id", using: :btree
   end
 
