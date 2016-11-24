@@ -1,24 +1,25 @@
 module ApplicationHelper
-  def meta_json(*args)
-    options = {}
-    args.flatten.each do |argv|
-      if argv.is_a?(Hash)
-        options.update(argv)
-      else
-        options[argv.to_s] = {}
-      end
-    end
-
-    content_for :meta_json, capture {
-      options.each do |records_name, records_option|
-        records = instance_variable_get("@#{records_name}")
-        next unless records
-        json = ActiveModel::Serializer::CollectionSerializer.new(
-          records,
-          records_option
-        ).to_json
-        concat tag('meta', name: "data-record-#{records_name}", content: json)
-      end
-    }
+  def react_props(*args)
+    name = nil
+    options = Hash[*
+      args
+      .map { |v| v.is_a?(Hash) ? v.to_a : [v, nil]}
+      .flatten
+      .map.with_index do |val, idx|
+        if idx % 2 == 0
+          name = val.to_s
+        else
+          records = instance_variable_get("@#{name}")
+          if records
+            ActiveModel::Serializer::CollectionSerializer.new(
+              records,
+              val
+            ).to_json
+          else
+            nil
+          end
+        end
+      end.compact
+    ]
   end
 end

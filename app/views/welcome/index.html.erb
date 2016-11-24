@@ -1,4 +1,4 @@
-<% meta_json :essays,
-  categories: { serializer: PublicCategorySerializer } %>
-
-<%= react_component('WelcomeIndexController') %>
+<%= react_component 'WelcomeIndexController', react_props(
+  essays: {},
+  categories: { serializer: PublicCategorySerializer }
+) %>
