@@ -1,4 +1,4 @@
 <%= react_component 'WelcomeIndexController', react_props(
-  essays: {},
-  categories: { serializer: PublicCategorySerializer }
+  essays: { with_topic: { with_category: true } },
+  categories: { with_topics: { active: true } }
 ) %>
