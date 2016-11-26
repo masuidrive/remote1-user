@@ -9,14 +9,26 @@ class WelcomeIndexController extends ActionController {
   }
 
   getTopicEssay(topic_uid) {
-    _.find(this.props.essays, (e) => (e.topic_uid == topic_uid))
+    return _.find(this.props.essays, (e) => (e.topic_uid == topic_uid))
   }
 
   getCategoryEssay(category_uid) {
-    _.find(this.props.essays, (e) => (e.category_uid == category_uid))
+    console.log(`category_uid=${category_uid}`)
+    console.log(_.find(this.props.essays, (e) => (e.topic.category_uid == category_uid)))
+    return _.find(this.props.essays, (e) => (e.topic.category_uid == category_uid))
+  }
+
+  getFilledCategories() {
+    return this.props.essays.map(e => e.topic.category)
+  }
+
+  getUnfilledCategories() {
+    return _.differenceBy(this.props.categories, this.getFilledCategories(), c => c.uid)
   }
 
   renderIndex() {
+    var filled_categories = this.getFilledCategories()
+    var unfilled_categories = this.getUnfilledCategories()
     return (
       <div>
         Welcome to Resume-1.
@@ -33,9 +45,16 @@ class WelcomeIndexController extends ActionController {
         ) }
         <hr />
         <h2>filled categories</h2>
-        { this.props.categories.map((category, cidx) => 
-          <div key={`a${category.uid}`}>
-_.filterでgetCategoryEssay
+        { filled_categories.map((category, cidx) => 
+          <div key={`filled_${category.uid}`}>
+            {category.label_ja}
+          </div>
+        ) }
+        <hr />
+        <h2>unfilled categories</h2>
+        { unfilled_categories.map((category, cidx) => 
+          <div key={`filled_${category.uid}`}>
+            {category.label_ja}
           </div>
         ) }
       </div>
