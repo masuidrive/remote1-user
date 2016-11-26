@@ -1,7 +1,7 @@
 class WelcomeIndexController extends ActionController {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = { };
     this.defaultAction = 'index'
   }
 
@@ -13,8 +13,6 @@ class WelcomeIndexController extends ActionController {
   }
 
   getCategoryEssay(category_uid) {
-    console.log(`category_uid=${category_uid}`)
-    console.log(_.find(this.props.essays, (e) => (e.topic.category_uid == category_uid)))
     return _.find(this.props.essays, (e) => (e.topic.category_uid == category_uid))
   }
 
@@ -32,15 +30,21 @@ class WelcomeIndexController extends ActionController {
     return (
       <div>
         Welcome to Resume-1.
-        <h2>Topics</h2>
+        <h2>Catogories</h2>
         { this.props.categories.map((category, cidx) =>
-          <div key={category.uid}>
-            <h3>{ category.label_ja } / { category.label_en }</h3>
-            { category.topics.map((topic, tidx) =>
-              <div key={topic.uid}>
-                { topic.body }
-              </div>
-            )}
+          <div key={category.uid} className="panel panel-default">
+            <div className="panel-heading">
+              { category.label_ja } / { category.label_en }
+            </div>
+            <div className="panel-body">
+              { _.isNil(essay = this.getCategoryEssay(category.uid)) ?
+                <button className="btn btn-default">
+                  回答する
+                </button>
+              :
+                `回答済み: ${essay.topic.body}`
+              }
+            </div>
           </div>          
         ) }
         <hr />
