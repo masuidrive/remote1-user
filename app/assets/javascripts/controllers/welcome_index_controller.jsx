@@ -30,36 +30,23 @@ class WelcomeIndexController extends ActionController {
     return (
       <div>
         Welcome to Resume-1.
-        <h2>Catogories</h2>
-        { this.props.categories.map((category, cidx) =>
-          <div key={category.uid} className="panel panel-default">
-            <div className="panel-heading">
-              { category.label_ja } / { category.label_en }
-            </div>
-            <div className="panel-body">
-              { _.isNil(essay = this.getCategoryEssay(category.uid)) ?
-                <button className="btn btn-default">
-                  回答する
-                </button>
-              :
-                `回答済み: ${essay.topic.body}`
-              }
-            </div>
-          </div>          
+        <h2>回答済みカテゴリ</h2>
+        { filled_categories.map((category) =>
+          <CategoryComponent category={category} key={category.uid}>
+            回答済み: { this.getCategoryEssay(category.uid).topic.body }
+            <button className="btn btn-primary">
+              編集する
+            </button>
+          </CategoryComponent>
         ) }
         <hr />
-        <h2>filled categories</h2>
-        { filled_categories.map((category, cidx) => 
-          <div key={`filled_${category.uid}`}>
-            {category.label_ja}
-          </div>
-        ) }
-        <hr />
-        <h2>unfilled categories</h2>
-        { unfilled_categories.map((category, cidx) => 
-          <div key={`filled_${category.uid}`}>
-            {category.label_ja}
-          </div>
+        <h2>未回答カテゴリ</h2>
+        { unfilled_categories.map((category) =>
+          <CategoryComponent category={category} key={category.uid}>
+            <button className="btn btn-primary">
+              回答する
+            </button>
+          </CategoryComponent>
         ) }
       </div>
     )

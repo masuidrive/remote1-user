@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121162458) do
+ActiveRecord::Schema.define(version: 20161127041120) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
     t.string   "label_en"
     t.string   "label_ja"
-    t.boolean  "visible",     default: false
-    t.integer  "order_index", default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "visible",                      default: false
+    t.integer  "order_index",                  default: 0
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.text     "description_ja", limit: 65535
+    t.text     "description_en", limit: 65535
   end
 
   create_table "essays", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
