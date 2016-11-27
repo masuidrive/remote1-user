@@ -37,7 +37,7 @@ class WelcomeIndexController extends ActionController {
               { _.truncate(this.getCategoryEssay(category.uid).topic.body) }
             </div>
             <div className="panel-body panel-actions">
-              <a className="btn btn-primary" href={`/categories/${category.uid}/edit`}>
+              <a className="btn btn-primary" href={`/categories/${category.uid}/essay/edit`}>
                 編集する
               </a>
             </div>
@@ -48,7 +48,7 @@ class WelcomeIndexController extends ActionController {
         { unfilled_categories.map((category) =>
           <CategoryComponent category={category} key={category.uid}>
             <div className="panel-body">
-              <a className="btn btn-primary" href={`/categories/${category.uid}/edit`}>
+              <a className="btn btn-primary" href={`/categories/${category.uid}/essay/edit`}>
                 回答する
               </a>
             </div>
