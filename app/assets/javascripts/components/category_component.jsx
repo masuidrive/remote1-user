@@ -5,10 +5,8 @@ window.CategoryComponent = (props) => (
       { props.category.label_ja }
     </div>
     <div className="panel-body">
-      <p className="description">
-        { props.category.description_ja }
-        { _.isNil(props.children) ? undefined : props.children }
-      </p>
+      { props.category.description_ja }
     </div>
+    { props.children }
   </div>
 )
