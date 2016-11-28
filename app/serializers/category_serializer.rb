@@ -1,5 +1,7 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :uid, :label_en, :label_ja, :visible
+  attributes :uid, :visible
+  attributes :label_en, :label_ja
+  attributes :description_en, :description_ja
   attribute :topics, if: -> { instance_options.has_key?(:with_topics) }
   
   def topics

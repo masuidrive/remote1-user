@@ -10,10 +10,13 @@ module ApplicationHelper
     .flatten.each_slice(2)
     .map do |(name, options)|
       val = instance_variable_get("@#{name}")
-      [
-        name,
-        val ? ActiveModel::Serializer::CollectionSerializer.new(val, options).as_json : nil
-      ]
+      json = nil
+      if val.is_a?(ActiveRecord::Base)
+        json = ActiveModelSerializers::SerializableResource.new(val, options).as_json
+      else
+        json = ActiveModel::Serializer::CollectionSerializer.new(val, options).as_json
+      end
+      [ name, json ]
     end.to_h
   end
 end
