@@ -2,11 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.select-topic {
-    input[type=radio] {
-        margin-right: 10px;
+.edit-essay-component {
+    .select-topic {
+        input[type=radio] {
+            margin-right: 10px;
+        }
+        label {
+            font-weight: normal !important;
+        }
     }
-    label {
-        font-weight: normal !important;
+    textarea.essay-body {
+        height: 8em;
     }
 }

@@ -1,11 +1,26 @@
 class EssayEditController extends ActionController {
   constructor(props) {
-    super(props);
-    this.state = { };
+    super(props)
+    this.state = {
+      body: props.essay.body,
+      topic_uid: props.essay.topic_uid
+    }
     this.defaultAction = 'index'
   }
 
   actionIndex() {
+  }
+
+  handleUpdateEssayBody(text) {
+    this.setState({
+      body: text
+    });
+  }
+
+  handleUpdateTopicUid(topic_uid) {
+    this.setState({
+      topic_uid: topic_uid
+    });
   }
 
   renderIndex() {
@@ -15,7 +30,12 @@ class EssayEditController extends ActionController {
         <div className="">
           { this.props.category.description_ja }
         </div>
-        <EditEssayComponent essay={ this.props.essay } category={ this.props.category } />
+        <EditEssayComponent
+          dispatch={ this.dispatch }
+          body={ this.state.body }
+          topic_uid={ this.state.topic_uid }
+          category={ this.props.category }
+        />
       </div>
     )
   }

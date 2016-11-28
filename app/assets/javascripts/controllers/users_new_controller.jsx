@@ -17,14 +17,14 @@ class UsersNewController extends ActionController {
     this.setState({
       username: text,
       validUsername: this.validUsername(text)
-    });
+    })
   }
 
   handleUpdatePassword(text) {
     this.setState({
       password: text,
       validPassword: this.validPassword(text)
-    });
+    })
   }
 
   actionNew() {
