@@ -9,7 +9,7 @@ window.EditEssayComponent = (props) => (
                 name="topic"
                 value={ topic.uid }
                 checked={ props.topic_uid == topic.uid }
-                onChange={ e => props.dispatch('update_topic_uid', e.target.value) }
+                onChange={ (e) => props.dispatch('update_topic_uid', e.target.value) }
             />
             { topic.body }
         </label>
@@ -17,7 +17,7 @@ window.EditEssayComponent = (props) => (
     </div>
     <h3>回答</h3>
     <textarea className="form-control essay-body"
-       onChange={(e) => props.dispatch('update_essay_body', e.target.value)}
+       onChange={ (e) => props.dispatch('update_essay_body', e.target.value) }
         value={ props.body }
     />
 </div>
