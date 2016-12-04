@@ -18,7 +18,7 @@ window.EditEssayComponent = (props) => (
     <h3>回答</h3>
     <textarea className="form-control essay-body"
        onChange={ (e) => props.dispatch('update_essay_body', e.target.value) }
-        value={ props.body }
+        value={ props.body || ''}
     />
 </div>
 )

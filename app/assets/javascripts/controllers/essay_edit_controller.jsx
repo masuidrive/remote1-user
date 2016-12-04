@@ -3,7 +3,7 @@ class EssayEditController extends ActionController {
     super(props)
     this.state = {
       body: props.essay.body,
-      topic_uid: props.essay.topic_uid
+      topic_uid: props.essay.topic.uid
     }
     this.defaultAction = 'index'
   }
@@ -61,7 +61,7 @@ class EssayEditController extends ActionController {
     )
   }
 
-  renderPostEssay() {
+  renderPost() {
     return (
       <div>
       OK
