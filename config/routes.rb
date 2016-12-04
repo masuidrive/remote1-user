@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     get :check_username
   end
   resources :categories, only: %w() do
-    resource :essay, only: %w(edit update)
+    resource :essay, only: %w(edit create)
   end
 end

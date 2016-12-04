@@ -6,6 +6,12 @@ class EssaysController < ApplicationController
   def edit
   end
 
+  def create
+    @topic = Topic.find_by(uid: params[:essay][:topic_uid], active: true)
+    @essay = @category.post_essay(current_user, @topic, params[:essay][:body])
+    render json: @essay
+  end
+
   private
   def prepare_category
     @category = Category.find_by(uid: params[:category_id])
@@ -14,9 +20,6 @@ class EssaysController < ApplicationController
 
   private
   def prepare_essay
-    @essay = current_user.essays
-      .where(topics: {category_id: @category.id})
-      .includes(:topic => :category)
-      .first || current_user.essays.build
+    @essay = @category.essays.find_by(user_id: current_user.id) || current_user.essays.build
   end
 end

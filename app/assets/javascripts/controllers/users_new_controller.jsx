@@ -53,16 +53,14 @@ class UsersNewController extends ActionController {
   }
 
   actionCreate() {
-    var user = new UserModel();
-    user.username = this.state.username;
-    user.password = this.state.password;
+    var user = new UserModel()
+    user.username = this.state.username
+    user.password = this.state.password
     return new Promise((resolve, reject) => {
       user.signup().then(() => {
-        console.log("resolve");
         resolve();
       })
       .catch(() => {
-        console.log("reject");
         reject();
       })
     })

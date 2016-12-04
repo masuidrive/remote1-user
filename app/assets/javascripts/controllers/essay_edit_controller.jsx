@@ -23,6 +23,22 @@ class EssayEditController extends ActionController {
     });
   }
 
+  actionPost() {
+    var essay = new EssayModel()
+    essay.body = this.state.body
+    essay.topic_uid = this.state.topic_uid
+    essay.category_uid = this.props.category.uid
+    return new Promise((resolve, reject) => {
+      essay.post().then(() => {
+        resolve()
+      })
+      .catch(() => {
+        reject()
+      })
+    })
+
+  }
+
   renderIndex() {
     return (
       <div>
@@ -37,10 +53,18 @@ class EssayEditController extends ActionController {
           category={ this.props.category }
         />
         <div className="">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={() => this.dispatch('action', 'post') }>
             回答を投稿する
           </button>
         </div>
+      </div>
+    )
+  }
+
+  renderPostEssay() {
+    return (
+      <div>
+      OK
       </div>
     )
   }
